@@ -1,9 +1,5 @@
 class HubsController < ApplicationController
 
-    def create
-
-    end
-
     def index
         @hubs = Hub.all 
         @hubs.each do |hub|
