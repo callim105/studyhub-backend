@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_18_132838) do
+ActiveRecord::Schema.define(version: 2019_09_24_194301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 2019_09_18_132838) do
     t.string "noise"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "image_url"
+    t.bigint "hub_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hub_id"], name: "index_images_on_hub_id"
+    t.index ["user_id"], name: "index_images_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -49,6 +59,8 @@ ActiveRecord::Schema.define(version: 2019_09_18_132838) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "images", "hubs"
+  add_foreign_key "images", "users"
   add_foreign_key "reviews", "hubs"
   add_foreign_key "reviews", "users"
 end

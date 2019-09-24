@@ -1,7 +1,8 @@
 class Hub < ApplicationRecord
     has_many :reviews, dependent: :destroy
     has_many :users, through: :reviews
-
+    has_many :images
+    
     def get_rating
         reviews = self.reviews
         ratings = []
