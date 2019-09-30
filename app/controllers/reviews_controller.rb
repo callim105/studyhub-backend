@@ -17,8 +17,21 @@ class ReviewsController < ApplicationController
         end
     end
 
-    def delete
+    def update
+        @review = Review.find_by(id: params[:id])
+        
+        if @review.update(review_params)
+            render json: @review, status: 200
+        else
+            render json: { error: @review.errors.full_messages }, status: :not_acceptable
+        end
+    end
 
+    def destroy
+        @review = Review.find_by(id: params[:id])
+        @review.destroy
+        @reviews = Review.all
+        render json: @reviews, status: 200
     end
 
     private

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authorized, only: [:create, :show, :update]
+    skip_before_action :authorized, only: [:create]
     # make auth for show
 
     def profile
